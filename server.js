@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const morgan = require('morgan');
 const db = require('./db');
 
 const path = __dirname + '/views/';
@@ -22,8 +23,12 @@ router.get('/sharks', function (req, res, next) {
     res.sendFile(path + 'sharks.html');
 });
 
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path));
 app.use('/', router);
+app.use(morgan('dev'));
 
 app.listen(PORT, () => {
     console.log(`Running on ${HOST}:${PORT}`);

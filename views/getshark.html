@@ -47,12 +47,13 @@
                     </div>
                     <div class="col-lg-4">
                         <p>
-                            <form action="/sharks/addshark" method="post">
-                                <div class="caption">Enter your shark</div>
-                                <input type="text" placeholder="Shark Name" name="name" <%=sharks[i].name; %>
-                                <input type="text" placeholder="Shark Character" name="character" <%=sharks[i].character %>
-                                <button type="submit">Submit</button>
-                            </form>
+                            <div class="caption">Your Sharks</div>
+                            <ul>
+                                <% sharks.foreach(function(shark) { %>
+                                    <p>Name: <%= shark.name %></p>
+                                    <p>Character: <%= shark.character %></p>
+                                <% }); %>
+                            </ul>
                         </p>
                     </div>
                 </div>                    
