@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const morgan = require('morgan');
 const db = require('./db');
+const sharks = require('./routes/sharks');
 
 const path = __dirname + '/views/';
 const PORT = 8080;
@@ -27,6 +28,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path));
+app.use('/sharks', sharks);
 app.use('/', router);
 app.use(morgan('dev'));
 
